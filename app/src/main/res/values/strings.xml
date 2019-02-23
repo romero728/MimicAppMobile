@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">MimicApp</string>
+    <string name="image">image</string>
+    <string name="enjoy_with_your_friends">Enjoy with your friends!</string>
+    <string name="loginbutton">Iniciar sesión con Google</string>
 </resources>
