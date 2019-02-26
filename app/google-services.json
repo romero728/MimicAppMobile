@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "72077037359-barcf7lni1fn93m6hipmi17p5d7pguvh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mimicapp",
+            "certificate_hash": "be8857f1f35b659faa624b3f8374239736db785c"
+          }
+        },
+        {
           "client_id": "72077037359-v2va5knsd1050huvlf4lphhfnn3t9nrv.apps.googleusercontent.com",
           "client_type": 3
         }
