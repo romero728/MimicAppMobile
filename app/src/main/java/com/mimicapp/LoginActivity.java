@@ -3,6 +3,7 @@ package com.mimicapp;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -16,6 +17,8 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.mimicapp.DBConnection.UserRegister;
+
+import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -33,10 +36,16 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setIcon(R.mipmap.ic_myicon);
+        }
+
         sharedPreferences = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
 
         SignInButton signInButton = findViewById(R.id.sign_in_button);
-        signInButton.setSize(SignInButton.SIZE_STANDARD);
+        signInButton.setColorScheme(SignInButton.COLOR_DARK);
+        signInButton.setSize(SignInButton.SIZE_WIDE);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
