@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +46,16 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
 
-        btnNewGame.setText("Nuevo juego");
-        btnCategories.setText("Ver categorías");
+        btnNewGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToNewGame();
+            }
+        });
+    }
+
+    public void goToNewGame() {
+        Intent iNewGame = new Intent(this, NewGameActivity.class);
+        startActivity(iNewGame);
     }
 }
