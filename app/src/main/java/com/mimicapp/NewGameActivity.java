@@ -361,6 +361,5 @@ public class NewGameActivity extends AppCompatActivity {
     public void changeActivity() {
         Intent intent = new Intent(this, SettingsGameActivity.class);
         startActivity(intent);
-        finish();
     }
 }

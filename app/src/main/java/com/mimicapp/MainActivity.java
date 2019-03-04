@@ -1,6 +1,8 @@
 package com.mimicapp;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -43,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
-            finish();
         }
 
         btnNewGame.setOnClickListener(new View.OnClickListener() {
@@ -57,5 +58,29 @@ public class MainActivity extends AppCompatActivity {
     public void goToNewGame() {
         Intent iNewGame = new Intent(this, NewGameActivity.class);
         startActivity(iNewGame);
+    }
+
+    @Override
+    public void onBackPressed() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("¿Deseas salir de la aplicación?");
+        builder.setCancelable(true);
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    finishAffinity();
+                }
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }
