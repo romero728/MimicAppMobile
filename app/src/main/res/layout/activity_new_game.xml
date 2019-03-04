@@ -14,13 +14,14 @@
 
         <TextView
             android:id="@+id/tvNGLabel1"
-            android:layout_width="wrap_content"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:gravity="center_horizontal"
             android:text="Selecciona el número de equipos"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -47,13 +48,14 @@
 
         <TextView
             android:id="@+id/tvNGLabel2"
-            android:layout_width="wrap_content"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="28dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:gravity="center_horizontal"
             android:text="Ingresa el nombre de cada equipo"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"

@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
             getSupportActionBar().setIcon(R.mipmap.ic_myicon);
         }
 
-        sharedPreferences = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("userData", Context.MODE_PRIVATE);
 
         SignInButton signInButton = findViewById(R.id.sign_in_button);
         signInButton.setColorScheme(SignInButton.COLOR_DARK);

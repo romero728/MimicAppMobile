@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         Button btnNewGame = findViewById(R.id.btnNewGame);
         Button btnCategories = findViewById(R.id.btnCategories);
 
-        sharedPreferences = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("userData", Context.MODE_PRIVATE);
         String userName = sharedPreferences.getString("nameKey", null);
 
         if (userName != null) {

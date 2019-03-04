@@ -4,7 +4,6 @@
     <string name="enjoy_with_your_friends">Enjoy with your friends!</string>
     <string name="button">Button</string>
     <string-array name="number_teams">
-        <item>Número de equipos</item>
         <item>2 equipos</item>
         <item>3 equipos</item>
         <item>4 equipos</item>
