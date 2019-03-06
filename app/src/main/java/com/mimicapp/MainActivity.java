@@ -17,7 +17,7 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
-    Context context;
+    SharedPreferences.Editor spEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,13 @@ public class MainActivity extends AppCompatActivity {
         Button btnCategories = findViewById(R.id.btnCategories);
 
         sharedPreferences = getSharedPreferences("userData", Context.MODE_PRIVATE);
+
+        String userId = getIntent().getExtras().getString("userId");
+
+        spEditor  = sharedPreferences.edit();
+        spEditor.putString("userIdKey", userId);
+        spEditor.apply();
+
         String userName = sharedPreferences.getString("nameKey", null);
 
         if (userName != null) {

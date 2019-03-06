@@ -17,6 +17,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.mimicapp.DBConnection.ListCategories;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -359,7 +361,10 @@ public class NewGameActivity extends AppCompatActivity {
     }
 
     public void changeActivity() {
-        Intent intent = new Intent(this, SettingsGameActivity.class);
-        startActivity(intent);
+        SharedPreferences spUser = getSharedPreferences("userData", Context.MODE_PRIVATE);
+        String url = spUser.getString("urlKey", null);
+        String userId = spUser.getString("userIdKey", null);
+
+        new ListCategories(this).execute(url, userId);
     }
 }
