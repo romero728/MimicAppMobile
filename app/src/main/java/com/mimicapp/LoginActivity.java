@@ -90,8 +90,11 @@ public class LoginActivity extends AppCompatActivity {
 
                 new UserRegister(this).execute(url, userEmail, userName);
 
-                Toast.makeText(this, "Welcome " + userName, Toast.LENGTH_LONG).show();
+                String[] split = userName.split(" ");
+                userName = split[0];
 
+                Toast.makeText(this, "¡Bienvenido a Mimic App!", Toast.LENGTH_LONG)
+                        .show();
             } else {
                 Toast.makeText(this, "Ups! Error xD", Toast.LENGTH_LONG).show();
             }

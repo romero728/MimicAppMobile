@@ -35,11 +35,15 @@ public class MainActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("userData", Context.MODE_PRIVATE);
 
-        String userId = getIntent().getExtras().getString("userId");
+        String userId = sharedPreferences.getString("userIdKey", null);
 
-        spEditor  = sharedPreferences.edit();
-        spEditor.putString("userIdKey", userId);
-        spEditor.apply();
+        if (userId.isEmpty()) {
+            userId = getIntent().getExtras().getString("userId");
+
+            spEditor  = sharedPreferences.edit();
+            spEditor.putString("userIdKey", userId);
+            spEditor.apply();
+        }
 
         String userName = sharedPreferences.getString("nameKey", null);
 

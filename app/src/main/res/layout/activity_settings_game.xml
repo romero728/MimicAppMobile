@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/tvSGLabel1"
-        android:layout_width="350dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -17,7 +17,7 @@
         android:layout_marginRight="8dp"
         android:gravity="center_horizontal"
         android:text="CONFIGURACIÓN DEL JUEGO"
-        android:textSize="30sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.511"
@@ -26,7 +26,7 @@
 
     <TextView
         android:id="@+id/tvSGLabel2"
-        android:layout_width="350dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -60,7 +60,7 @@
 
     <TextView
         android:id="@+id/tvSGLabel3"
-        android:layout_width="350dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
@@ -93,7 +93,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvSGLabel3" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnSGBeginPlay"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -101,13 +101,11 @@
         android:layout_marginTop="56dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
         android:background="@color/colorPrimary"
         android:text="Empezar a jugar"
         android:textColor="@android:color/background_light"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

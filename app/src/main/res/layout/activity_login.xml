@@ -27,12 +27,13 @@
 
     <TextView
         android:id="@+id/tvSlogan"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:gravity="center_horizontal"
         android:text="@string/enjoy_with_your_friends"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="24sp"

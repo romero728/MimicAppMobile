@@ -14,7 +14,7 @@
 
         <TextView
             android:id="@+id/tvNGLabel1"
-            android:layout_width="350dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
@@ -48,7 +48,7 @@
 
         <TextView
             android:id="@+id/tvNGLabel2"
-            android:layout_width="350dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
