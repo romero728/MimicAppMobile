@@ -90,9 +90,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 new UserRegister(this).execute(url, userEmail, userName);
 
-                String[] split = userName.split(" ");
-                userName = split[0];
-
                 Toast.makeText(this, "¡Bienvenido a Mimic App!", Toast.LENGTH_LONG)
                         .show();
             } else {
@@ -100,6 +97,30 @@ public class LoginActivity extends AppCompatActivity {
             }
         } catch (ApiException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+
+        if (account != null) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+
+            /*userEmail = account.getEmail();
+            userName = account.getDisplayName();
+
+            spEditor  = sharedPreferences.edit();
+            spEditor.putString("urlKey", url);
+            spEditor.putString("emailKey", userEmail);
+            spEditor.putString("nameKey", userName);
+            spEditor.apply();
+
+            new UserRegister(this).execute(url, userEmail, userName);*/
         }
     }
 
