@@ -1,6 +1,8 @@
 package com.mimicapp;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -70,6 +72,65 @@ public class NewGameActivity extends AppCompatActivity {
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sNumberTeams.setAdapter(adapter);
+
+        if (spNewGame != null) {
+            int teams = Integer.parseInt(spNewGame.getString("numberTeamsKey", "0"));
+            teams = teams - 2;
+
+            if (teams >= 0) {
+                sNumberTeams.setSelection(teams);
+
+                switch (teams) {
+                    case 0:
+                        etNameTeamOne.setText(spNewGame.getString("nameTeamOne", null));
+                        etNameTeamTwo.setText(spNewGame.getString("nameTeamTwo", null));
+
+                        break;
+                    case 1:
+                        etNameTeamOne.setText(spNewGame.getString("nameTeamOne", null));
+                        etNameTeamTwo.setText(spNewGame.getString("nameTeamTwo", null));
+                        etNameTeamThree.setText(spNewGame.getString("nameTeamThree", null));
+
+                        break;
+                    case 2:
+                        etNameTeamOne.setText(spNewGame.getString("nameTeamOne", null));
+                        etNameTeamTwo.setText(spNewGame.getString("nameTeamTwo", null));
+                        etNameTeamThree.setText(spNewGame.getString("nameTeamThree", null));
+                        etNameTeamFour.setText(spNewGame.getString("nameTeamFour", null));
+
+                        break;
+                    case 3:
+                        etNameTeamOne.setText(spNewGame.getString("nameTeamOne", null));
+                        etNameTeamTwo.setText(spNewGame.getString("nameTeamTwo", null));
+                        etNameTeamThree.setText(spNewGame.getString("nameTeamThree", null));
+                        etNameTeamFour.setText(spNewGame.getString("nameTeamFour", null));
+                        etNameTeamFive.setText(spNewGame.getString("nameTeamFive", null));
+
+                        break;
+                    case 4:
+                        etNameTeamOne.setText(spNewGame.getString("nameTeamOne", null));
+                        etNameTeamTwo.setText(spNewGame.getString("nameTeamTwo", null));
+                        etNameTeamThree.setText(spNewGame.getString("nameTeamThree", null));
+                        etNameTeamFour.setText(spNewGame.getString("nameTeamFour", null));
+                        etNameTeamFive.setText(spNewGame.getString("nameTeamFive", null));
+                        etNameTeamSix.setText(spNewGame.getString("nameTeamSix", null));
+
+                        break;
+                    case 5:
+                        etNameTeamOne.setText(spNewGame.getString("nameTeamOne", null));
+                        etNameTeamTwo.setText(spNewGame.getString("nameTeamTwo", null));
+                        etNameTeamThree.setText(spNewGame.getString("nameTeamThree", null));
+                        etNameTeamFour.setText(spNewGame.getString("nameTeamFour", null));
+                        etNameTeamFive.setText(spNewGame.getString("nameTeamFive", null));
+                        etNameTeamSix.setText(spNewGame.getString("nameTeamSix", null));
+                        etNameTeamSeven.setText(spNewGame.getString("nameTeamSeven", null));
+
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
 
         sNumberTeams.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -366,5 +427,31 @@ public class NewGameActivity extends AppCompatActivity {
         String userId = spUser.getString("userIdKey", null);
 
         new ListCategories(this).execute(url, userId);
+    }
+
+    @Override
+    public void onBackPressed() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("¿Deseas volver al menú principal?");
+        builder.setCancelable(true);
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    Intent intent = new Intent(NewGameActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }

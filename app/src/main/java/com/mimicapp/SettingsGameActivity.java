@@ -188,4 +188,9 @@ public class SettingsGameActivity extends AppCompatActivity {
         params = (ConstraintLayout.LayoutParams) tv4.getLayoutParams();
         params.topToBottom = R.id.sSGKindCategory;
     }
+
+    @Override
+    public void onBackPressed() {
+
+    }
 }
