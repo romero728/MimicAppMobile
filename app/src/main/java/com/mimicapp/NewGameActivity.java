@@ -41,7 +41,7 @@ public class NewGameActivity extends AppCompatActivity {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
-            Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+            Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
             getSupportActionBar().setIcon(R.mipmap.ic_myicon);
         }
 
@@ -444,6 +444,10 @@ public class NewGameActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    editorNewGame = spNewGame.edit();
+                    editorNewGame.clear();
+                    editorNewGame.apply();
+
                     Intent intent = new Intent(NewGameActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();

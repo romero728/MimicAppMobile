@@ -148,10 +148,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     public void onResult(@NonNull Status status) {
                         if (status.isSuccess()) {
                             spEditor = sharedPreferences.edit();
-                            spEditor.remove("urlKey");
-                            spEditor.remove("userIdKey");
-                            spEditor.remove("userEmailKey");
-                            spEditor.remove("userNameKey");
+                            spEditor.clear();
                             spEditor.apply();
 
                             Toast.makeText(MainActivity.this,
