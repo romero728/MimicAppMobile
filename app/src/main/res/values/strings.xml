@@ -24,4 +24,5 @@
         <item>3 minutos</item>
         <item>5 minutos</item>
     </string-array>
+    <string name="title_activity_category">category</string>
 </resources>

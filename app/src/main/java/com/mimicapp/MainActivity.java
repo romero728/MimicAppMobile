@@ -88,10 +88,17 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             startActivity(intent);
         }
 
+
         btnNewGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 goToNewGame();
+            }
+        });
+        btnCategories.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToCategories();
             }
         });
     }
@@ -126,6 +133,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     public void goToNewGame() {
         Intent iNewGame = new Intent(this, NewGameActivity.class);
         startActivity(iNewGame);
+    }
+
+    public void goToCategories(){
+        Intent iCategories = new Intent( this, CategoryActivity.class);
+        startActivity(iCategories);
     }
 
     public void signOut(View view) {
