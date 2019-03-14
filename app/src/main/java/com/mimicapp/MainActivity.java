@@ -88,7 +88,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             startActivity(intent);
         }
 
-
         btnNewGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

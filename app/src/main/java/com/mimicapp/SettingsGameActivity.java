@@ -1,6 +1,7 @@
 package com.mimicapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.constraint.ConstraintLayout;
@@ -125,11 +126,7 @@ public class SettingsGameActivity extends AppCompatActivity {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                editorSettingsGame = spSettingsGame.edit();
-                editorSettingsGame.putString("kindCategoryKey", kindCategorySelected);
-                editorSettingsGame.putString("categoryKey", categorySelected);
-                editorSettingsGame.putString("timeKey", timeSelected);
-                editorSettingsGame.apply();
+                goToGame();
             }
         });
     }
@@ -187,6 +184,17 @@ public class SettingsGameActivity extends AppCompatActivity {
 
         params = (ConstraintLayout.LayoutParams) tv4.getLayoutParams();
         params.topToBottom = R.id.sSGKindCategory;
+    }
+
+    public void goToGame() {
+        editorSettingsGame = spSettingsGame.edit();
+        editorSettingsGame.putString("kindCategoryKey", kindCategorySelected);
+        editorSettingsGame.putString("categoryKey", categorySelected);
+        editorSettingsGame.putString("timeKey", timeSelected);
+        editorSettingsGame.apply();
+
+        Intent intent = new Intent(this, GameActivity.class);
+        startActivity(intent);
     }
 
     @Override
