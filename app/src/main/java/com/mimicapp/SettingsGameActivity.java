@@ -57,11 +57,31 @@ public class SettingsGameActivity extends AppCompatActivity {
 
         Button btnNext = findViewById(R.id.btnSGBeginPlay);
 
+        /*--- Obtener categorías */
+
+        String splitKind = Pattern.quote("/");
+        String splitCategory = Pattern.quote("|");
+        String listCategories = getIntent().getExtras().getString("listCategories");
+        String[] allCategories = listCategories.split(splitKind);
+        final String[] generalCategories = allCategories[0].split(splitCategory);
+        String[] customCategories = new String[1];
+        generalCategories[0] = "Todas";
+
+        if (allCategories.length > 1) {
+            customCategories = allCategories[1].split(splitCategory);
+            customCategories[0] = "Todas";
+        } else {
+            customCategories[0] = "No has creado categorías";
+        }
+
+        /* --- */
+
         ArrayAdapter<CharSequence> adapterKind = ArrayAdapter.createFromResource(this,
                 R.array.kind_categories, android.R.layout.simple_spinner_item);
         adapterKind.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sKindCategory.setAdapter(adapterKind);
 
+        final String[] finalCustomCategories = customCategories;
         sKindCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -73,13 +93,13 @@ public class SettingsGameActivity extends AppCompatActivity {
                         break;
                     case 1:
                         kindCategorySelected = "general";
-                        getGeneralCategories();
+                        getCategories(generalCategories);
                         showCategories(tvLabel3, tvLabel4, sCategory);
 
                         break;
                     case 2:
                         kindCategorySelected = "custom";
-                        getCustomCategories();
+                        getCategories(finalCustomCategories);
                         showCategories(tvLabel3, tvLabel4, sCategory);
 
                         break;
@@ -126,13 +146,19 @@ public class SettingsGameActivity extends AppCompatActivity {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToGame();
+                if (categorySelected.equals("No has creado categorías")) {
+                    Toast.makeText(SettingsGameActivity.this,
+                            "Debes seleccionar una categoría válida", Toast.LENGTH_SHORT)
+                            .show();
+                } else {
+                    goToGame();
+                }
             }
         });
     }
 
-    public void getGeneralCategories() {
-        listCategories = new ArrayList<>(Arrays.asList(getCategories(1)));
+    public void getCategories(String[] categories) {
+        listCategories = new ArrayList<>(Arrays.asList(categories));
 
         ArrayAdapter<String> adapterCategory = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, listCategories);
@@ -140,35 +166,43 @@ public class SettingsGameActivity extends AppCompatActivity {
         sCategory.setAdapter(adapterCategory);
     }
 
-    public void getCustomCategories() {
-        listCategories = new ArrayList<>(Arrays.asList(getCategories(2)));
+    /*public void getCustomCategories(String[] cusCategories) {
+        listCategories = new ArrayList<>(Arrays.asList(cusCategories));
 
         ArrayAdapter<String> adapterCategory = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, listCategories);
         adapterCategory.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sCategory.setAdapter(adapterCategory);
-    }
+    }*/
 
-    public String[] getCategories(int k) {
+    /*public String[] getCategories(int k) {
         String splitKind = Pattern.quote("/");
         String splitCategory = Pattern.quote("|");
 
         String listCategories = getIntent().getExtras().getString("listCategories");
 
+        Toast.makeText(this, listCategories, Toast.LENGTH_SHORT).show();
+
         String[] allCategories = listCategories.split(splitKind);
 
         String[] generalCategories = allCategories[0].split(splitCategory);
-        String[] customCategories = allCategories[1].split(splitCategory);
+        String[] customCategories = new String[0];
+
+        if (allCategories.length > 1) {
+            customCategories = allCategories[1].split(splitCategory);
+            customCategories[0] = "Todas";
+        } else {
+            customCategories[0] = "No has creado categorías";
+        }
 
         generalCategories[0] = "Todas";
-        customCategories[0] = "Todas";
 
         if (k == 1) {
             return generalCategories;
         } else {
             return customCategories;
         }
-    }
+    } */
 
     public void showCategories(TextView tv3, TextView tv4, Spinner s) {
         tv3.setVisibility(View.VISIBLE);
@@ -192,6 +226,8 @@ public class SettingsGameActivity extends AppCompatActivity {
         editorSettingsGame.putString("categoryKey", categorySelected);
         editorSettingsGame.putString("timeKey", timeSelected);
         editorSettingsGame.apply();
+
+
 
         Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
