@@ -17,6 +17,8 @@ public class GameActivity extends AppCompatActivity {
     SharedPreferences spGame;
     SharedPreferences.Editor editorGame;
 
+    String words;
+
     TextView nameTeam, currentWord, time;
     CountDownTimer countDownTimer;
 
@@ -32,6 +34,10 @@ public class GameActivity extends AppCompatActivity {
         }
 
         spGame = getSharedPreferences("settingsNewGame", Context.MODE_PRIVATE);
+
+        words = getIntent().getExtras().getString("gameWords");
+
+        Toast.makeText(this, words, Toast.LENGTH_LONG).show();
 
         nameTeam = findViewById(R.id.tvGNameTeam);
         currentWord = findViewById(R.id.tvGWord);
@@ -69,8 +75,8 @@ public class GameActivity extends AppCompatActivity {
         return aux;
     }
 
-    @Override
+    /*@Override
     public void onBackPressed() {
 
-    }
+    }*/
 }
