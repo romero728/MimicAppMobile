@@ -43,6 +43,18 @@ public class CategoryActivity extends AppCompatActivity {
 
         Button btnCreateCategories = findViewById(R.id.btnCreateCategories);
         Button btnSeeCategories = findViewById(R.id.btnSeeCategories);
+
+        btnSeeCategories.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToListCategory();
+            }
+        });
+    }
+
+    public void goToListCategory(){
+        Intent iListCategory = new Intent(this, ListCategoryActivity.class);
+        startActivity(iListCategory);
     }
 
 }
