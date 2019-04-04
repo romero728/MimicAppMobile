@@ -12,9 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ListCategoryActivity"></activity>
         <activity
             android:name=".SplashScreenActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppFullScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,10 +22,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".NewGameActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity"
             tools:targetApi="jelly_bean">
             <meta-data
@@ -34,6 +39,7 @@
         </activity>
         <activity
             android:name=".SettingsGameActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".NewGameActivity"
             tools:targetApi="jelly_bean">
             <meta-data
@@ -44,7 +50,9 @@
             android:name=".GameActivity"
             android:screenOrientation="sensorLandscape" />
         <activity android:name=".CategoryActivity" />
-
+        <activity
+            android:name=".ListCategoryActivity"
+            android:screenOrientation="portrait"/>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
