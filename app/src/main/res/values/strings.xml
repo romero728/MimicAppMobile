@@ -24,5 +24,10 @@
         <item>3 minutos</item>
         <item>5 minutos</item>
     </string-array>
+    <string-array name="rounds_options">
+        <item>1 ronda</item>
+        <item>3 rondas</item>
+        <item>5 rondas</item>
+    </string-array>
     <string name="title_activity_category">category</string>
 </resources>

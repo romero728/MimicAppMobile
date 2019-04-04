@@ -24,23 +24,32 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".NewGameActivity"
-            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"
             tools:targetApi="jelly_bean">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".SettingsGameActivity"
+            android:name=".ChooseCategoryActivity"
             android:screenOrientation="portrait"
             android:parentActivityName=".NewGameActivity"
+            tools:targetApi="jelly_bean">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".NewGameActivity" />
+        </activity>
+        <activity
+            android:name=".SettingsGameActivity"
+            android:parentActivityName=".ChooseCategoryActivity"
+            android:screenOrientation="portrait"
             tools:targetApi="jelly_bean">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -52,7 +61,8 @@
         <activity android:name=".CategoryActivity" />
         <activity
             android:name=".ListCategoryActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

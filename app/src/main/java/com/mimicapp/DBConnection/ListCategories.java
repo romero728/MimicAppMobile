@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 
+import com.mimicapp.ChooseCategoryActivity;
 import com.mimicapp.MainActivity;
 import com.mimicapp.SettingsGameActivity;
 
@@ -64,7 +65,7 @@ public class ListCategories extends AsyncTask<String, String, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        Intent intent = new Intent(context, SettingsGameActivity.class);
+        Intent intent = new Intent(context, ChooseCategoryActivity.class);
         intent.putExtra("listCategories", result);
         context.startActivity(intent);
     }

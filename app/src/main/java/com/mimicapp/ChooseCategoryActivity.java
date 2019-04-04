@@ -1,6 +1,7 @@
 package com.mimicapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.constraint.ConstraintLayout;
@@ -14,30 +15,29 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mimicapp.DBConnection.GetWords;
-
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
-public class SettingsGameActivity extends AppCompatActivity {
+public class ChooseCategoryActivity extends AppCompatActivity {
+    SharedPreferences spSettingsGame, spUserData;
+    SharedPreferences.Editor editorChooseCategory;
+
     ConstraintLayout.LayoutParams params;
 
-    //String categorySelected, kindCategorySelected;
-    String roundsSelected, timeSelected;
+    List<String> listCategories;
 
-    //Spinner sKindCategory = null;
-    //Spinner sCategory = null;
-    Spinner sTime = null;
-    Spinner sRounds = null;
+    String categorySelected, kindCategorySelected;
 
-    //List<String> listCategories;
-
-    SharedPreferences spSettingsGame, spUserData;
-    SharedPreferences.Editor editorSettingsGame;
+    Spinner sKindCategory = null;
+    Spinner sCategory = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings_game);
+        setContentView(R.layout.activity_choose_category);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
@@ -48,19 +48,15 @@ public class SettingsGameActivity extends AppCompatActivity {
         spSettingsGame = getSharedPreferences("settingsNewGame", Context.MODE_PRIVATE);
         spUserData = getSharedPreferences("userData", Context.MODE_PRIVATE);
 
-        final TextView tvLabel3 = findViewById(R.id.tvSGLabel3);
-        final TextView tvLabel4 = findViewById(R.id.tvSGLabel2);
+        final TextView tvLabel3 = findViewById(R.id.tvCCLabel3);
+        sKindCategory = findViewById(R.id.sCCKindCategory);
+        sCategory = findViewById(R.id.sCCCategory);
 
-        //sKindCategory = findViewById(R.id.sSGKindCategory);
-        //sCategory = findViewById(R.id.sSGCategory);
-        sTime = findViewById(R.id.sSGTime);
-        sRounds = findViewById(R.id.sSGRounds);
-
-        Button btnNext = findViewById(R.id.btnSGBeginPlay);
+        Button btnNext = findViewById(R.id.btnCCNext);
 
         /*--- Obtener categorías */
 
-        /*String splitKind = Pattern.quote("/");
+        String splitKind = Pattern.quote("/");
         String splitCategory = Pattern.quote("|");
         String listCategories = getIntent().getExtras().getString("listCategories");
         String[] allCategories = listCategories.split(splitKind);
@@ -73,11 +69,11 @@ public class SettingsGameActivity extends AppCompatActivity {
             customCategories[0] = "Todas";
         } else {
             customCategories[0] = "No has creado categorías";
-        }*/
+        }
 
         /* --- */
 
-        /*ArrayAdapter<CharSequence> adapterKind = ArrayAdapter.createFromResource(this,
+        ArrayAdapter<CharSequence> adapterKind = ArrayAdapter.createFromResource(this,
                 R.array.kind_categories, android.R.layout.simple_spinner_item);
         adapterKind.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sKindCategory.setAdapter(adapterKind);
@@ -89,19 +85,19 @@ public class SettingsGameActivity extends AppCompatActivity {
                 switch (i) {
                     case 0:
                         kindCategorySelected = "all";
-                        hideCategories(tvLabel3, tvLabel4, sCategory);
+                        hideCategories(tvLabel3, sCategory);
 
                         break;
                     case 1:
                         kindCategorySelected = "general";
                         getCategories(generalCategories);
-                        showCategories(tvLabel3, tvLabel4, sCategory);
+                        showCategories(tvLabel3, sCategory);
 
                         break;
                     case 2:
                         kindCategorySelected = "custom";
                         getCategories(finalCustomCategories);
-                        showCategories(tvLabel3, tvLabel4, sCategory);
+                        showCategories(tvLabel3, sCategory);
 
                         break;
                     default:
@@ -125,48 +121,14 @@ public class SettingsGameActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
-        });*/
-
-        ArrayAdapter<CharSequence> adapterTime = ArrayAdapter.createFromResource(this,
-                R.array.time_options, android.R.layout.simple_spinner_item);
-        adapterTime.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sTime.setAdapter(adapterTime);
-
-        sTime.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                timeSelected = adapterView.getItemAtPosition(i).toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-        ArrayAdapter<CharSequence> adapterRounds = ArrayAdapter.createFromResource(this,
-                R.array.rounds_options, android.R.layout.simple_spinner_item);
-        adapterRounds.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sRounds.setAdapter(adapterRounds);
-
-        sRounds.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                roundsSelected = adapterView.getItemAtPosition(i).toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
         });
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*if (!kindCategorySelected.equals("all")) {
+                if (!kindCategorySelected.equals("all")) {
                     if (categorySelected.equals("No has creado categorías")) {
-                        Toast.makeText(SettingsGameActivity.this,
+                        Toast.makeText(ChooseCategoryActivity.this,
                                 "Debes seleccionar una categoría válida", Toast.LENGTH_SHORT)
                                 .show();
                     } else {
@@ -174,13 +136,12 @@ public class SettingsGameActivity extends AppCompatActivity {
                     }
                 } else {
                     goToSettings();
-                }*/
-                goToGame();
+                }
             }
         });
     }
 
-    /*public void getCategories(String[] categories) {
+    public void getCategories(String[] categories) {
         listCategories = new ArrayList<>(Arrays.asList(categories));
 
         ArrayAdapter<String> adapterCategory = new ArrayAdapter<>(this,
@@ -189,41 +150,26 @@ public class SettingsGameActivity extends AppCompatActivity {
         sCategory.setAdapter(adapterCategory);
     }
 
-    public void showCategories(TextView tv3, TextView tv4, Spinner s) {
+    public void showCategories(TextView tv3, Spinner s) {
         tv3.setVisibility(View.VISIBLE);
         s.setVisibility(View.VISIBLE);
-
-        params = (ConstraintLayout.LayoutParams) tv4.getLayoutParams();
-        params.topToBottom = R.id.sSGCategory;
     }
 
-    public void hideCategories(TextView tv3, TextView tv4, Spinner s) {
+    public void hideCategories(TextView tv3, Spinner s) {
         tv3.setVisibility(View.INVISIBLE);
         s.setVisibility(View.INVISIBLE);
+    }
 
-        params = (ConstraintLayout.LayoutParams) tv4.getLayoutParams();
-        params.topToBottom = R.id.sSGKindCategory;
-    }*/
+    public void goToSettings() {
+        editorChooseCategory = spSettingsGame.edit();
+        editorChooseCategory.putString("kindCategoryKey", kindCategorySelected);
+        editorChooseCategory.putString("categoryKey", categorySelected);
+        editorChooseCategory.apply();
 
-    public void goToGame() {
-        editorSettingsGame = spSettingsGame.edit();
-        //editorSettingsGame.putString("kindCategoryKey", kindCategorySelected);
-        //editorSettingsGame.putString("categoryKey", categorySelected);
-        editorSettingsGame.putString("timeKey", timeSelected);
-        editorSettingsGame.putString("roundsKey", roundsSelected);
-        editorSettingsGame.apply();
-
-        //String url = spUserData.getString("urlKey", null);
-        //String userId = spUserData.getString("userIdKey", null);
-
-        if (!spUserData.getString("userIdKey", null).isEmpty()) {
-            new GetWords(this).execute(spUserData.getString("urlKey", null),
-                    spUserData.getString("userIdKey", null),
-                    spSettingsGame.getString("kindCategoryKey", null),
-                    spSettingsGame.getString("kindCategoryKey", null));
-        } else {
-            Toast.makeText(this, "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
-        }
+        Intent intent = new Intent(ChooseCategoryActivity.this,
+                SettingsGameActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
