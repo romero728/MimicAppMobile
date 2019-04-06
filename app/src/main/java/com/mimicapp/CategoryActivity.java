@@ -1,6 +1,7 @@
 package com.mimicapp;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,6 +20,8 @@ import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import com.mimicapp.DBConnection.CategoriesEdit;
+import com.mimicapp.DBConnection.ListCategories;
 
 import java.util.Objects;
 
@@ -53,8 +56,12 @@ public class CategoryActivity extends AppCompatActivity {
     }
 
     public void goToListCategory(){
-        Intent iListCategory = new Intent(this, ListCategoryActivity.class);
-        startActivity(iListCategory);
+
+        SharedPreferences spUser = getSharedPreferences("userData", Context.MODE_PRIVATE);
+        String url = spUser.getString("urlKey", null);
+        String userId = spUser.getString("userIdKey", null);
+
+        new CategoriesEdit(this).execute(url, userId);
     }
 
 }
