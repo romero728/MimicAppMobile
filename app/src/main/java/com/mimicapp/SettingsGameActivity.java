@@ -1,7 +1,10 @@
 package com.mimicapp;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +13,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +25,8 @@ import java.util.Objects;
 
 public class SettingsGameActivity extends AppCompatActivity {
     ConstraintLayout.LayoutParams params;
+
+    Dialog popupHelp;
 
     //String categorySelected, kindCategorySelected;
     String roundsSelected, timeSelected;
@@ -45,11 +52,31 @@ public class SettingsGameActivity extends AppCompatActivity {
             getSupportActionBar().setIcon(R.mipmap.ic_myicon);
         }
 
+        popupHelp = new Dialog(this);
+        ImageButton ibHelp = findViewById(R.id.ibSGHelp);
+
+        ibHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popupHelp.setContentView(R.layout.custompopuphelp);
+                ImageView ivClose = popupHelp.findViewById(R.id.imageView);
+                ivClose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        popupHelp.dismiss();
+                    }
+                });
+
+                popupHelp.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                popupHelp.show();
+            }
+        });
+
         spSettingsGame = getSharedPreferences("settingsNewGame", Context.MODE_PRIVATE);
         spUserData = getSharedPreferences("userData", Context.MODE_PRIVATE);
 
-        final TextView tvLabel3 = findViewById(R.id.tvSGLabel3);
-        final TextView tvLabel4 = findViewById(R.id.tvSGLabel2);
+        final TextView tvLabel3 = findViewById(R.id.tvSGLabel2);
+        final TextView tvLabel4 = findViewById(R.id.tvSGLabel3);
 
         //sKindCategory = findViewById(R.id.sSGKindCategory);
         //sCategory = findViewById(R.id.sSGCategory);

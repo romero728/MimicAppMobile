@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvSGLabel2"
+        android:id="@+id/tvSGLabel3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -55,10 +55,10 @@
         android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSGLabel2" />
+        app:layout_constraintTop_toBottomOf="@+id/tvSGLabel3" />
 
     <TextView
-        android:id="@+id/tvSGLabel3"
+        android:id="@+id/tvSGLabel2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -89,7 +89,7 @@
         android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSGLabel3" />
+        app:layout_constraintTop_toBottomOf="@+id/tvSGLabel2" />
 
     <Button
         android:id="@+id/btnSGBeginPlay"
